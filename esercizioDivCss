@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esercizio DIV - CSS</title>
+   <Style>
+      #FabioHeader{
+            height: 100px;
+            width: 100%;
+            border: 4px solid #0ce713;
+            background-color: greenyellow;
+      }
+      #FabioBody{
+            height: 100px;
+            width: 100%;
+            border: 4px solid #1e0db3;
+            background-color: darkcyan;
+      }
+      #FabioArms{
+            height: 100px;
+            width: 100%;
+            border: 4px solid darkmagenta;
+            background-color: blueviolet;
+      }
+       #FabioLegs{
+            height: 100px;
+            width: 100%;
+            border: 4px solid goldenrod;
+            background-color: gold;
+      }
+       #FabioFooter{
+            height: 100px;
+            width: 100%;
+            border: 4px solid lightseagreen;
+            background-color: lightskyblue;
+      }
+
+
+
+   </Style>
+
+
+
+</head>
+<body>
+   <div id="FabioHeader">
+
+    
+
+
+   </div>
+
+    <div id="FabioBody">
+
+      
+   
+        </div>
+        <div id="FabioArms">
+
+           
+       
+       
+            </div>
+            <div id="FabioLegs">
+
+                
+
+
+               </div>
+               <div id="FabioFooter">
+
+                 
+                   </div>
+   
+</body>
+</html>
