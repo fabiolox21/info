@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        
+        .box {
+            height: 200px;
+            width: 200px;
+            border: 10px solid black;
+            background-color: white;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>La mia prima pagina JavaScript</h1>
+
+    <div id="FabioHeader" class="box">
+        <p>Lezione sui CSS</p>
+    </div>
+
+    <div id="FabioBody" class="box">
+        <p>All'interno di questo quadrato posso inserire sezione per input e output</p>
+    </div>
+
+    <div id="FabioArms" class="box">
+        <p>Questo è il terzo quadrato</p>
+    </div>
+
+    <div id="FabioFooter" class="box">
+        <p>All'interno di questo quadrato posso inserire sezione per input e output</p>
+    </div>
+
+    <button onclick="scriviHeader()">Scrivi in Header</button>
+    <button onclick="scriviBody()">Scrivi in Body</button>
+    <button onclick="scriviArms()">Scrivi in Arms</button>
+    <button onclick="scriviFooter()">Scrivi in Footer</button>
+
+    <script>
+        function scriviHeader() {
+            document.getElementById("FabioHeader").innerHTML = "<p>Contenuto aggiornato in Header</p>";
+        }
+
+        function scriviBody() {
+            document.getElementById("FabioBody").innerHTML = "<p>Contenuto aggiornato in Body</p>";
+        }
+
+        function scriviArms() {
+            document.getElementById("FabioArms").innerHTML = "<p>Contenuto aggiornato in Arms</p>";
+        }
+
+        function scriviFooter() {
+            document.getElementById("FabioFooter").innerHTML = "<p>Contenuto aggiornato in Footer</p>";
+        }
+    </script>
+
+</body>
+</html>
