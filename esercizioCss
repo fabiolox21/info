@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esercizio DIV - CSS</title>
+   <Style>
+      #FabioHeader{
+            height: 100px;
+            width: 100%;
+            border: 4px solid #76bd78;
+            background-color: rgb(153, 241, 23);
+      }
+      #FabioBody{
+            height: 100px;
+            width: 100%;
+            border: 4px solid #514f63;
+            background-color: rgb(33, 40, 40);
+      }
+      #FabioArms{
+            height: 100px;
+            width: 100%;
+            border: 4px solid rgb(83, 34, 83);
+            background-color: rgb(183, 134, 228);
+      }
+       #FabioLegs{
+            height: 100px;
+            width: 100%;
+            border: 4px solid rgb(118, 100, 57);
+            background-color: gold;
+      }
+       #FabioFooter{
+            height: 100px;
+            width: 100%;
+            border: 4px solid rgb(20, 75, 72);
+            background-color: lightskyblue;
+      }
+
+
+
+   </Style>
+
+
+
+</head>
+<body>
+   <div id="FabioHeader">
+
+    <p> Lezione sui css   </p>
+
+
+   </div>
+
+    <div id="FabioBody">
+
+        <p> All'interno di questo quadrato posso inserire  sezione
+            per input e output   </p>
+   
+   
+        </div>
+        <div id="FabioArms">
+
+          
+       
+       
+            </div>
+            <div id="FabioLegs">
+
+                
+
+               </div>
+               <div id="FabioFooter">
+
+                   
+
+                   </div>
+   
+</body>
+</html>
