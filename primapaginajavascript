@@ -6,7 +6,7 @@
     <title>Document</title>
 
     <style>
-        
+        /* CSS per ciascun div */
         .box {
             height: 200px;
             width: 200px;
@@ -38,7 +38,7 @@
     <div id="FabioFooter" class="box">
         <p>All'interno di questo quadrato posso inserire sezione per input e output</p>
     </div>
-
+    
     <button onclick="scriviHeader()">Scrivi in Header</button>
     <button onclick="scriviBody()">Scrivi in Body</button>
     <button onclick="scriviArms()">Scrivi in Arms</button>
@@ -46,19 +46,19 @@
 
     <script>
         function scriviHeader() {
-            document.getElementById("FabioHeader").innerHTML = "<p>Contenuto aggiornato in Header</p>";
+            
         }
 
         function scriviBody() {
-            document.getElementById("FabioBody").innerHTML = "<p>Contenuto aggiornato in Body</p>";
+            
         }
 
         function scriviArms() {
-            document.getElementById("FabioArms").innerHTML = "<p>Contenuto aggiornato in Arms</p>";
+            
         }
 
         function scriviFooter() {
-            document.getElementById("FabioFooter").innerHTML = "<p>Contenuto aggiornato in Footer</p>";
+            
         }
     </script>
 
