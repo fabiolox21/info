@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aforismi di Scienziati</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+    .aforisma {
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .aforisma p {
+      margin: 0;
+    }
+    button {
+      margin-top: 10px;
+      padding: 5px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="aforisma">
+    <p id="aforisma1">"La scienza non è altro che un raffinamento del pensiero quotidiano." – Albert Einstein</p>
+    <button onclick="nascondiTesto('aforisma1')">Nascondi Testo</button>
+  </div>
+
+  <div class="aforisma">
+    <p id="aforisma2">"La natura è semplice e chiara, ma noi siamo troppo complicati per comprenderla." – Galileo Galilei</p>
+    <button onclick="nascondiTesto('aforisma2')">Nascondi Testo</button>
+  </div>
+
+  <div class="aforisma">
+    <p id="aforisma3">"Non posso insegnarvi nulla, posso solo farvi pensare." – Socrate</p>
+    <button onclick="nascondiTesto('aforisma3')">Nascondi Testo</button>
+  </div>
+
+  <div class="aforisma">
+    <p id="aforisma4">"La matematica è il linguaggio con cui Dio ha scritto l’universo." – Galileo Galilei</p>
+    <button onclick="nascondiTesto('aforisma4')">Nascondi Testo</button>
+  </div>
+
+  <div class="aforisma">
+    <p id="aforisma5">"La scienza è un modo di pensare molto più che un insieme di conoscenze." – Carl Sagan</p>
+    <button onclick="nascondiTesto('aforisma5')">Nascondi Testo</button>
+  </div>
+
+  <script>
+    function nascondiTesto(id) {
+      const testo = document.getElementById(id);
+      testo.style.display = "none"; 
+    }
+  </script>
+
+</body>
+</html>
