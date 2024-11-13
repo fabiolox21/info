@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatore Decrementale</title>
+    <style>
+        #counterContainer {
+            margin: 20px;
+        }
+        #incrementDiv {
+            margin: 20px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="counterContainer">10</div>
+    <div id="incrementDiv">0</div>
+
+    <script>
+        // Inizializzazione del contatore decrementale
+        let countdown = 10;
+        let countdownInterval = setInterval(() => {
+            document.getElementById("counterContainer").innerText = countdown;
+            countdown--;
+
+            // Quando countdown raggiunge zero
+            if (countdown < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("counterContainer").style.display = "none";
+                document.getElementById("incrementDiv").style.display = "block";
+
+                // Inizializzazione del contatore incrementale
+                let countUp = 0;
+                let countUpInterval = setInterval(() => {
+                    document.getElementById("incrementDiv").innerText = countUp;
+                    countUp++;
+
+                    // Quando countUp raggiunge 10
+                    if (countUp > 10) {
+                        clearInterval(countUpInterval);
+                    }
+                }, 1000); // Incremento ogni secondo
+            }
+        }, 1000); // Decremento ogni secondo
+    </script>
+</body>
+</html>
