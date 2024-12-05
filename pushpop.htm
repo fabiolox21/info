@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Lista della Spesa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 5px;
+            margin: 5px 0;
+            background-color: #f4f4f4;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .remove-btn {
+            background-color: #f44336;
+        }
+        .remove-btn:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Playlist</h1>
+    <ul id="playlistUl"></ul>
+
+    <div>
+        <button onclick="aggiungiCanzone()">Aggiungi Canzone</button>
+        <button onclick="rimuoviCanzone()">Rimuovi Ultima Canzone</button>
+    </div>
+
+    <script>
+        // Creazione di un array vuoto
+        let playlist = [];
+
+        // Funzione per aggiungere un articolo alla lista
+        function aggiungiCanzone() {
+            // Chiediamo all'utente di inserire un articolo
+            let canzone = prompt("Inserisci una canzone per la tua playlist:");
+           
+            if (canzone) {
+                // Aggiungiamo l'articolo all'array con push()
+                playlist.push(canzone);
+                aggiornaPlaylist();
+            } else {
+                alert("Non hai inserito nulla.");
+            }
+        }
+
+        // Funzione per rimuovere l'ultimo articolo dalla lista
+        function rimuoviCanzone() {
+            if (playlist.length > 0) {
+                // Rimuoviamo l'ultimo articolo con pop()
+                let canzoneRimossa = playlist.pop();
+                alert("Hai rimosso: " + canzoneRimossa);
+                aggiornaPlaylist();
+            } else {
+                alert("La playlist è già vuota!");
+            }
+        }
+
+        // Funzione per aggiornare la lista visualizzata nell'interfaccia
+        function aggiornaPlaylist() {
+            // Selezioniamo la lista nel DOM
+            let playlistUl = document.getElementById("playlistUl");
+            playlistUl.innerHTML = ""; // Svuotiamo la lista prima di aggiornarla
+
+            // Aggiungiamo ogni articolo dell'array come un elemento <li>
+            playlist.forEach(function(canzone) {
+                let li = document.createElement("li");
+                li.textContent = canzone;
+                playlistUl.appendChild(li);
+            });
+        }
+    </script>
+
+</body>
+</html>
