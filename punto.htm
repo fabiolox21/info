@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Punto Grafico</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    canvas {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="myCanvas" width="500" height="500"></canvas>
+
+  <script>
+    // Ottieni il riferimento al canvas e al suo contesto di rendering
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Coordinate e stile del punto
+    const x = canvas.width / 2;
+    const y = canvas.height / 2;
+    const pointRadius = 5;
+    const pointColor = 'red';
+
+    // Disegna un punto rosso al centro del canvas
+    function drawPoint(x, y, radius, color) {
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    // Disegna il punto
+    drawPoint(x, y, pointRadius, pointColor);
+  </script>
+</body>
+</html>
