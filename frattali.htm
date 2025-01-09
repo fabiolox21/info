@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Numeri Frattali e il Frattale di Mandelbrot</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            margin: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #222;
+        }
+        .intestazione, .curiosita, .proprieta, .commento {
+            font-style: italic;
+            text-transform: lowercase;
+        }
+        h1, h2 {
+            color: #004d99;
+        }
+        p {
+            text-align: justify;
+        }
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 15px;
+        }
+        strong {
+            color: #cc0000;
+        }
+        .fractal-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+        canvas {
+            display: block;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <!-- Intestazione dettagliata -->
+    <h1 class="intestazione">intestazione: introduzione ai numeri frattali</h1>
+    <p>
+        I <strong>numeri frattali</strong> sono concetti matematici complessi che descrivono strutture geometriche straordinariamente intricate. 
+        Un frattale è una figura che mostra una proprietà chiamata <em>autosimilarità</em>, ovvero la capacità di apparire simile a se stessa 
+        indipendentemente dalla scala di osservazione. Questa proprietà è talmente affascinante che molti matematici e artisti si sono dedicati 
+        per decenni al loro studio, trovando connessioni tra la matematica pura e la natura.
+    </p>
+    <p>
+        La teoria dei frattali è stata formalizzata dal matematico Benoît B. Mandelbrot negli anni '70, anche se concetti simili erano stati 
+        già esplorati da Gaston Julia e Pierre Fatou. Il termine "frattale" deriva dal latino <em>fractus</em>, che significa "frammentato" o "rotto", 
+        riflettendo la struttura irregolare di queste forme.
+    </p>
+    <p>
+        I frattali non sono solo una curiosità matematica: trovano applicazioni in fisica, biologia, economia e informatica. La loro capacità di descrivere 
+        strutture complesse con formule semplici è alla base della modellazione di fenomeni naturali come la formazione delle coste, delle nuvole e persino delle galassie.
+    </p>
+
+    <!-- Sezione Curiosità -->
+    <h2 class="curiosita">curiosità sui numeri frattali</h2>
+    <ul>
+        <li><strong>Natura e Frattali:</strong> I frattali si trovano in natura in molti fenomeni e strutture, come nei profili delle montagne, nei letti dei fiumi, 
+            nelle foglie di felce, nelle ramificazioni degli alberi e nei fulmini. Questa presenza è dovuta al modo in cui la natura ottimizza la crescita e l'espansione
+            della materia in uno spazio tridimensionale.</li>
+        <li><strong>Arte e Frattali:</strong> I frattali sono stati usati per creare immagini artistiche digitali complesse, grazie alla loro bellezza e complessità 
+            visiva. Gli artisti usano software specializzati per generare immagini frattali che sembrano paesaggi alieni o disegni psichedelici.</li>
+        <li><strong>Medicina e Frattali:</strong> La geometria frattale è usata per descrivere la struttura dei polmoni, dei vasi sanguigni e delle reti neurali, 
+            dimostrando come queste strutture biologiche siano progettate per ottimizzare la superficie disponibile per scambi di ossigeno e nutrienti.</li>
+        <li><strong>Economia:</strong> In finanza, i frattali sono utilizzati per modellare l'andamento dei mercati e i comportamenti caotici delle azioni, 
+            soprattutto nei modelli di Mandelbrot per la volatilità dei mercati.</li>
+        <li><strong>Informatica:</strong> I frattali sono usati nella compressione di immagini e nella generazione procedurale di ambienti nei videogiochi e nei film.</li>
+    </ul>
+
+    <!-- Proprietà -->
+    <h2 class="proprieta">proprietà dei numeri frattali</h2>
+    <ol>
+        <li><strong>Autosimilarità:</strong> Un frattale può essere perfettamente autosimile, dove ogni parte della figura riproduce l'intero in scala minore, o 
+            approssimativamente autosimile, dove la somiglianza si verifica solo a determinate scale.</li>
+        <li><strong>Dimensione Frattale:</strong> La dimensione frattale non è un numero intero ma un valore frazionario che descrive il grado di complessità 
+            di un frattale. Ad esempio, la dimensione frattale della curva di Koch è circa 1.26, maggiore di una linea ma inferiore a un piano.</li>
+        <li><strong>Iterazione:</strong> I frattali sono generati ripetendo un processo semplice infinite volte. Questo processo è noto come iterazione e può 
+            essere visualizzato graficamente, come nel caso del triangolo di Sierpiński o della curva di Hilbert.</li>
+        <li><strong>Infinita complessità:</strong> Anche se generati da regole semplici, i frattali mostrano una complessità infinita. Ad esempio, la lunghezza della 
+            costa di un'isola diventa infinita se misurata con precisione infinita, un fenomeno descritto dal paradosso della costa di Mandelbrot.</li>
+    </ol>
+
+    <!-- Sezione Frattale di Mandelbrot -->
+    <h2>Frattale di Mandelbrot</h2>
+    <p>
+        L'insieme di Mandelbrot è uno dei frattali più famosi e complessi. Viene generato iterando l'equazione complessa:  
+        \[ Z_{n+1} = Z_n^2 + C \].  
+        I punti che rimangono stabili dopo numerose iterazioni appartengono all'insieme di Mandelbrot e sono rappresentati in nero.
+    </p>
+    <p>
+        L'insieme di Mandelbrot è celebre per la sua infinita complessità: ingrandendo qualsiasi parte del bordo, si scoprono dettagli sempre nuovi e affascinanti, 
+        inclusi motivi a spirale, simmetrie e figure che ricordano l'intera forma originale.
+    </p>
+
+    <!-- Canvas per il Frattale -->
+    <div class="fractal-container">
+        <canvas id="mandelbrotCanvas"></canvas>
+    </div>
+
+    <!-- Commento -->
+    <h2 class="commento">commento</h2>
+    <p><em>
+        La figura del frattale di Mandelbrot qui generata è un perfetto esempio di come semplici regole matematiche possano portare a risultati 
+        estremamente complessi e visivamente accattivanti. Studiarne la bellezza e l'intricata geometria continua a ispirare matematici, fisici e artisti di tutto il mondo.
+    </em></p>
+
+    <!-- Script per generare il frattale -->
+    <script>
+        const canvas = document.getElementById("mandelbrotCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = 800;
+        canvas.height = 800;
+        const maxIter = 100;
+        const xmin = -2.5, xmax = 1.5;
+        const ymin = -2, ymax = 2;
+        
+        function map(value, start1, stop1, start2, stop2) {
+            return start2 + (stop2 - start1) * ((value - start1) / (stop1 - start1));
+        }
+
+        function mandelbrot(c) {
+            let z = { re: 0, im: 0 };
+            let n = 0;
+            while (n < maxIter && (z.re * z.re + z.im * z.im) <= 4) {
+                const tempRe = z.re * z.re - z.im * z.im + c.re;
+                z.im = 2 * z.re * z.im + c.im;
+                z.re = tempRe;
+                n++;
+            }
+            return n;
+        }
+
+        function drawFractal() {
+            const imgData = ctx.createImageData(canvas.width, canvas.height);
+            for (let x = 0; x < canvas.width; x++) {
+                for (let y = 0; y < canvas.height; y++) {
+                    const cx = map(x, 0, canvas.width, xmin, xmax);
