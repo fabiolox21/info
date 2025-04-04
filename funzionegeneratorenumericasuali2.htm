@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numeri Casuali Modificati</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #output {
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generatore di Numeri Casuali Modificati</h1>
+    <button onclick="iniziaGenerazione()">Inizia Generazione</button>
+    <div id="output"></div>
+
+    <script>
+        const ArrayNumeriCasuali = [];
+        const ArrayDivisioni = [];
+        const medieArray = [];
+        let intervalID;
+        
+        function iniziaGenerazione() {
+            clearInterval(intervalID); // Ferma eventuali generazioni precedenti
+            intervalID = setInterval(generaNumeri, 500); // Esegui ogni 500 ms
+        }
+
+        function generaNumeri() {
+            const min = 0.0; // Range da 0 a 1
+            const max = 1.0;
+            const rangeMedia = (max - min) / 2; // Calcola metà intervallo
+
+            // Generazione numero casuale
+            const numeroCasuale = Math.random() * (max - min) + min;
+            ArrayNumeriCasuali.push(numeroCasuale);
+
+            // Calcolo rapporto tra numeri consecutivi
+            if (ArrayNumeriCasuali.length > 1) {
+                const rapporto = numeroCasuale / ArrayNumeriCasuali[ArrayNumeriCasuali.length - 2];
+                ArrayDivisioni.push(rapporto);
+            }
+
+            // Calcola distanza dalla metà del range
+            const distanzaMeta = Math.abs(numeroCasuale - rangeMedia);
+
+            // Mostra dati nell'output
+            let output = `Numero casuale: ${numeroCasuale.toFixed(3)}\n`;
+            output += `Distanza dalla metà del range: ${distanzaMeta.toFixed(3)}\n`;
+            if (ArrayDivisioni.length > 0) {
+                output += `Ultimo rapporto (n/n-1): ${ArrayDivisioni[ArrayDivisioni.length - 1].toFixed(3)}\n`;
+            }
+
+            // Calcolo della media ogni 50 numeri
+            if (ArrayNumeriCasuali.length % 50 === 0) {
+                const media = calcolaMedia(ArrayNumeriCasuali.slice(-50));
+                medieArray.push(media);
+                output += `Media ultimi 50 numeri: ${media.toFixed(3)}\n`;
+            }
+
+            document.getElementById('output').textContent += output + '\n';
+        }
+
+        function calcolaMedia(array) {
+            return array.reduce((acc, val) => acc + val, 0) / array.length;
+        }
+    </script>
+</body>
+</html>
