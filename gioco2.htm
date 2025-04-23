@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco del Colore Più Scuro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .color-box {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+            border: 2px solid #fff;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gioco del Colore Più Scuro</h1>
+    <p>Clicca sul quadrato con il colore più scuro il più velocemente possibile!</p>
+    <div id="colorGrid"></div>
+    <button id="startButton">Inizia Gioco</button>
+    <div id="results"></div>
+
+    <script>
+        let reactionTimes = [];
+        let startTime;
+
+        function generateRandomColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return { r, g, b, hex: `rgb(${r}, ${g}, ${b})` };
+        }
+
+        function calculateBrightness(color) {
+            // Calcola la luminosità del colore (media ponderata RGB)
+            return (color.r * 0.299 + color.g * 0.587 + color.b * 0.114);
+        }
+
+        document.getElementById('startButton').addEventListener('click', () => {
+            const colorGrid = document.getElementById('colorGrid');
+            colorGrid.innerHTML = '';
+
+            const colors = [];
+            for (let i = 0; i < 8; i++) {
+                const color = generateRandomColor();
+                colors.push(color);
+
+                const colorBox = document.createElement('div');
+                colorBox.className = 'color-box';
+                colorBox.style.backgroundColor = color.hex;
+
+                colorBox.addEventListener('click', () => {
+                    const endTime = new Date().getTime();
+                    const reactionTime = (endTime - startTime) / 1000;
+
+                    const darkestColor = colors.reduce((darkest, current) =>
+                        calculateBrightness(current) < calculateBrightness(darkest) ? current : darkest
+                    );
+
+                    if (color.hex === darkestColor.hex) {
+                        reactionTimes.push(reactionTime);
+                        alert(`Corretto! Tempo di reazione: ${reactionTime.toFixed(2)} secondi`);
+                    } else {
+                        alert('Errore! Non è il colore più scuro.');
+                    }
+
+                    document.getElementById('results').textContent =
+                        `Tempi di reazione: ${reactionTimes.map(t => t.toFixed(2)).join(', ')}`;
+                });
+
+                colorGrid.appendChild(colorBox);
+            }
+
+            startTime = new Date().getTime();
+        });
+    </script>
+</body>
+</html>
