@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco Tempi di Reazione</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .number {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px;
+            font-size: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .number:hover {
+            background-color: #ddd;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gioco dei Numeri Primi</h1>
+    <p>Clicca sul numero primo il più velocemente possibile!</p>
+    <div id="numbers"></div>
+    <button id="startButton">Inizia Gioco</button>
+    <div id="results"></div>
+
+    <script>
+        function isPrime(num) {
+            if (num < 2) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        let reactionTimes = [];
+        let startTime;
+
+        document.getElementById('startButton').addEventListener('click', () => {
+            // Genera numeri casuali
+            const numbersDiv = document.getElementById('numbers');
+            numbersDiv.innerHTML = '';
+            const numbers = Array.from({ length: 8 }, () => Math.floor(Math.random() * 100) + 1);
+
+            numbers.forEach(number => {
+                const numberElement = document.createElement('div');
+                numberElement.className = 'number';
+                numberElement.textContent = number;
+                numberElement.addEventListener('click', () => {
+                    const endTime = new Date().getTime();
+                    const reactionTime = (endTime - startTime) / 1000;
+
+                    if (isPrime(number)) {
+                        reactionTimes.push(reactionTime);
+                        alert(`Corretto! Tempo di reazione: ${reactionTime.toFixed(2)} secondi`);
+                    } else {
+                        alert('Errore! Questo numero non è primo.');
+                    }
+
+                    document.getElementById('results').textContent = 
+                        `Tempi di reazione: ${reactionTimes.map(t => t.toFixed(2)).join(', ')}`;
+                });
+                numbersDiv.appendChild(numberElement);
+            });
+
+            // Avvia il timer
+            startTime = new Date().getTime();
+        });
+    </script>
+</body>
+</html>
