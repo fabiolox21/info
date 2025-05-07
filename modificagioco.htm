@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco del Colore Più Scuro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .color-box {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+            border: 2px solid #fff;
+        }
+        #results {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: left;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gioco del Colore Più Scuro</h1>
+    <p>Clicca sul quadrato con il colore più scuro il più velocemente possibile</p>
+    <div id="colorGrid"></div>
+    <div id="results"></div>
+
+    <script>
+        let reactionTimes = [];
+        let startTime;
+        let errorCount = 0; // Contatore degli errori
+
+        function generateRandomColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return { r, g, b, hex: `rgb(${r}, ${g}, ${b})` };
+        }
+
+        function calculateBrightness(color) {
+            return (color.r * 0.299 + color.g * 0.587 + color.b * 0.114);
+        }
+
+        function setupGame() {
+            const colorGrid = document.getElementById('colorGrid');
+            colorGrid.innerHTML = '';
+
+            const colors = [];
+            for (let i = 0; i < 8; i++) {
+                const color = generateRandomColor();
+                colors.push(color);
+
+                const colorBox = document.createElement('div');
+                colorBox.className = 'color-box';
+                colorBox.style.backgroundColor = color.hex;
+
+                colorBox.addEventListener('click', () => {
+                    const endTime = new Date().getTime();
+                    const reactionTime = (endTime - startTime) / 1000;
+
+                    const darkestColor = colors.reduce((darkest, current) =>
+                        calculateBrightness(current) < calculateBrightness(darkest) ? current : darkest
+                    );
+
+                    let resultText = `Tempo: ${reactionTime.toFixed(2)} sec - `;
+                    if (color.hex === darkestColor.hex) {
+                        resultText += " Corretto!";
+                    } else {
+                        resultText += " Errato!";
+                        errorCount++; // Incrementa il numero di errori
+                    }
+
+                    const resultItem = document.createElement('div');
+                    resultItem.textContent = resultText;
+                    document.getElementById('results').appendChild(resultItem);
+
+                    // Mostra un alert se gli errori superano 10
+                    if (errorCount > 10) {
+                        alert("Attenzione! Hai commesso più di 10 errori.");
+                    }
+
+                    // Ricarica i colori per un nuovo round
+                    setupGame();
+                });
+
+                colorGrid.appendChild(colorBox);
+            }
+
+            startTime = new Date().getTime();
+        }
+
+        setupGame();
+    </script>
+</body>
+</html>
