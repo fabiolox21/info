@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco del Colore Più Scuro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .color-box {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+            border: 2px solid #fff;
+        }
+        #results {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: left;
+            display: inline-block;
+        }
+        #exportButton {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gioco del Colore Più Scuro</h1>
+    <p>Clicca sul quadrato con il colore più scuro il più velocemente possibile</p>
+    <div id="colorGrid"></div>
+    <div id="results"></div>
+    <button id="exportButton">Esporta dati JSON</button>
+
+    <script>
+        const userName = prompt("Inserisci il tuo nome e cognome:");
+
+        if (!userName) {
+            alert("Devi inserire il tuo nome e cognome per giocare!");
+            location.reload();
+        }
+
+        let reactionTimes = [];
+        let startTime;
+        let errorCount = 0;
+        let attemptCount = 0;
+        const maxAttempts = 10;
+
+        function generateRandomColor() {
+            return {
+                r: Math.floor(Math.random() * 256),
+                g: Math.floor(Math.random() * 256),
+                b: Math.floor(Math.random() * 256),
+                hex: `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`
+            };
+        }
+
+        function calculateBrightness(color) {
+            return (color.r * 0.299 + color.g * 0.587 + color.b * 0.114);
+        }
+
+        function setupGame() {
+            if (attemptCount >= maxAttempts) {
+                document.getElementById('exportButton').style.display = 'block';
+                return;
+            }
+
+            const colorGrid = document.getElementById('colorGrid');
+            colorGrid.innerHTML = '';
+
+            const colors = [];
+            for (let i = 0; i < 8; i++) {
+                const color = generateRandomColor();
+                colors.push(color);
+
+                const colorBox = document.createElement('div');
+                colorBox.className = 'color-box';
+                colorBox.style.backgroundColor = color.hex;
+
+                colorBox.addEventListener('click', () => {
+                    const endTime = new Date().getTime();
+                    const reactionTime = (endTime - startTime) / 1000;
+                    reactionTimes.push(reactionTime);
+
+                    const darkestColor = colors.reduce((darkest, current) =>
+                        calculateBrightness(current) < calculateBrightness(darkest) ? current : darkest
+                    );
+
+                    let resultText = `Tempo: ${reactionTime.toFixed(2)} sec - `;
+                    if (color.hex === darkestColor.hex) {
+                        resultText += " Corretto!";
+                    } else {
+                        resultText += " Errato!";
+                        errorCount++;
+                    }
+
+                    const resultItem = document.createElement('div');
+                    resultItem.textContent = resultText;
+                    document.getElementById('results').appendChild(resultItem);
+
+                    attemptCount++;
+                    setupGame();
+                });
+
+                colorGrid.appendChild(colorBox);
+            }
+
+            startTime = new Date().getTime();
+        }
+
+        document.getElementById('exportButton').addEventListener('click', () => {
+            const gameData = {
+                utente: userName,
+                tempi_reazione: reactionTimes
+            };
+
+            const jsonData = JSON.stringify(gameData, null, 2);
+            const blob = new Blob([jsonData], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "reaction_times.json";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+
+        setupGame();
+    </script>
+</body>
+</html>
