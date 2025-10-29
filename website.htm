@@ -7,15 +7,47 @@
     body {
       font-family: Serif;
       margin: 0;
+      display: flex;
+    }
+
+    .menu {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      width: 200px;
+      background-color: black;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .menu li {
+      padding: 10px;
+    }
+
+    .menu li a {
+      display: block;
+      color: white;
+      text-decoration: none;
+    }
+
+    .menu li a:hover {
+      background-color: #6f00ff;
+    }
+
+    .content {
+      margin-left: 200px;
+      padding: 20px;
+      flex-grow: 1;
     }
 
     .header {
-      padding: 100px;
+      padding: 100px 20px 20px 100px;
       text-align: center;
       color: white;
       font-size: 60px;
       background-color: #6f00ff;
-      margin-left: 200px; /* spazio per il menu laterale */
     }
 
     .header h1 {
@@ -28,45 +60,20 @@
       font-family: Arial;
     }
 
-    ul.menu {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      width: 200px;
-      background-color: black;
-      position: fixed;
-      height: 100%;
-      overflow: auto;
-    }
-
-    ul.menu li {
-      padding: 10px;
-    }
-
-    ul.menu li a {
-      display: block;
-      color: white;
-      text-decoration: none;
-    }
-
-    ul.menu li a:hover {
-      background-color: #6f00ff;
-    }
-
     section {
       display: none;
       padding: 20px;
-      margin-left: 220px; /* spazio per il menu */
     }
 
     section.active {
       display: block;
     }
   </style>
+
   <script>
     function mostra(id) {
       const sezioni = document.querySelectorAll("section");
-      sezioni.forEach(s => s.classList.remove("active"));
+      sezioni.forEach(sezione => sezione.classList.remove("active"));
       document.getElementById(id).classList.add("active");
     }
   </script>
@@ -79,25 +86,27 @@
     <li><a href="#" onclick="mostra('Abbonamenti')">Abbonamenti</a></li>
   </ul>
 
-  <div class="header">
-    <h1><b>SILVIA AND FABIO'S GYM</b></h1>
-    <h2>Ecco la nostra palestra!</h2>
+  <div class="content">
+    <div class="header">
+      <h1><b>SILVIA AND FABIO'S GYM</b></h1>
+      <h2>Ecco la nostra palestra!</h2>
+    </div>
+
+    <section id="Home" class="active">
+      <h1>FUNZIONAMENTO</h1>
+      <p>scrivi quello che ti serve</p>
+    </section>
+
+    <section id="Storia">
+      <h1>STORIA</h1>
+      <p>scrivi quello che ti serve</p>
+    </section>
+
+    <section id="Abbonamenti">
+      <h1>ABBONAMENTI</h1>
+      <p>scrivi quello che ti serve</p>
+    </section>
   </div>
-
-  <section id="Home">
-    <h1>FUNZIONAMENTO</h1>
-    <p>scrivi quello che ti serve</p>
-  </section>
-
-  <section id="Storia">
-    <h1>FUNZIONAMENTO</h1>
-    <p>scrivi quello che ti serve</p>
-  </section>
-
-  <section id="Abbonamenti">
-    <h1>FUNZIONAMENTO</h1>
-    <p>scrivi quello che ti serve</p>
-  </section>
 
 </body>
 </html>
