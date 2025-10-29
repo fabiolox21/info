@@ -4,76 +4,74 @@
   <meta charset="UTF-8">
   <title>La palestra</title>
   <style>
-
-.header {
-  padding: 60px;
-  text-align: center;
-  color: white;
-  font-size: 60px;
- 
-  background-image:"imagegym.jpg";
-  background-size: cover;          
-  background-position: center;    
-  background-repeat: no-repeat;  
-}
-.header h1 {
-  font-size: 60px;
-  font-family: Serif;
-}
-.header h2 {
-  font-size: 20px;
-  font-family: Arial;
-}
-   
-    ul.menu{
-      list-style-type: none;
-      margin: 45;
-      padding: 20;
-      font-size: 30px;
+    body {
       font-family: Serif;
-      background-color:black;
-      overflow: hidden;
+      margin: 0;
+    }
+
+    .header {
+      padding: 100px;
+      text-align: center;
+      color: white;
+      font-size: 60px;
+      background-color: #6f00ff;
+      margin-left: 200px; /* spazio per il menu laterale */
+    }
+
+    .header h1 {
+      font-size: 60px;
+      font-family: Serif;
+    }
+
+    .header h2 {
+      font-size: 20px;
+      font-family: Arial;
+    }
+
+    ul.menu {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      width: 200px;
+      background-color: black;
+      position: fixed;
+      height: 100%;
+      overflow: auto;
     }
 
     ul.menu li {
-      float: left;
       padding: 10px;
     }
 
     ul.menu li a {
       display: block;
-      color:white;
-      text-align: center;
-
+      color: white;
+      text-decoration: none;
     }
 
     ul.menu li a:hover {
       background-color: #6f00ff;
     }
 
-
     section {
       display: none;
       padding: 20px;
+      margin-left: 220px; /* spazio per il menu */
     }
 
     section.active {
       display: block;
     }
-
-    body {
-      font-family: Serif;
-    }
-
   </style>
+  <script>
+    function mostra(id) {
+      const sezioni = document.querySelectorAll("section");
+      sezioni.forEach(s => s.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+  </script>
 </head>
 <body>
-
-
-<div class="header">
-  <h1><b>SILVIA AND FABIO'S GYM</b></h1>
-  <h2>Ecco la nostra palestra!</h2>
-</div>
 
   <ul class="menu">
     <li><a href="#" onclick="mostra('Home')">Home</a></li>
@@ -81,23 +79,25 @@
     <li><a href="#" onclick="mostra('Abbonamenti')">Abbonamenti</a></li>
   </ul>
 
-<section id="Home">
-<h1>FUNZIONAMENTO</h1>
-<p>scrivi quello che ti serve</p>
-</section>
+  <div class="header">
+    <h1><b>SILVIA AND FABIO'S GYM</b></h1>
+    <h2>Ecco la nostra palestra!</h2>
+  </div>
 
-<section id="Storia">
-<h1>FUNZIONAMENTO</h1>
-<p>scrivi quello che ti serve</p>
-</section>
+  <section id="Home">
+    <h1>FUNZIONAMENTO</h1>
+    <p>scrivi quello che ti serve</p>
+  </section>
 
-<section id="Abbonamenti">
-<h1>FUNZIONAMENTO</h1>
-<p>scrivi quello che ti serve</p>
-</section>
+  <section id="Storia">
+    <h1>FUNZIONAMENTO</h1>
+    <p>scrivi quello che ti serve</p>
+  </section>
 
-
-
+  <section id="Abbonamenti">
+    <h1>FUNZIONAMENTO</h1>
+    <p>scrivi quello che ti serve</p>
+  </section>
 
 </body>
 </html>
